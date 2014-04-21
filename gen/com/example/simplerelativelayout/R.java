@@ -17,6 +17,7 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
+        public static final int dateMax=0x7f0c0003;
         public static final int monthChn=0x7f0c0002;
         public static final int monthEng=0x7f0c0001;
         public static final int monthNum=0x7f0c0000;

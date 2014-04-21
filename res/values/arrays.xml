@@ -45,4 +45,19 @@
         <item>十二月</item>
     </string-array>
     
+    <integer-array name="dateMax">
+        <item>31</item>
+        <item>28</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+    </integer-array>
+    
 </resources>
