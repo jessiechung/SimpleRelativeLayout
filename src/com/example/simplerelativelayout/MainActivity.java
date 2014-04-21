@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.os.Build;
@@ -54,33 +56,59 @@ public class MainActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment {
     	
     	private Spinner month;
-    	private Spinner day;
+    	private Spinner date;
 
         public PlaceholderFragment() {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             
             month = (Spinner) rootView.findViewById(R.id.month);
-            String[] list_month = getResources().getStringArray(R.array.monthEng);
+            date = (Spinner) rootView.findViewById(R.id.date);
             
+            String[] list_month = getResources().getStringArray(R.array.monthEng);
             ArrayAdapter<String> adapter_month = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list_month);
             month.setAdapter(adapter_month);
-            
-            day = (Spinner) rootView.findViewById(R.id.day);
-            String[] list_day = new String[31];
-            for (int i = 0; i < 31; i++) {
-            	list_day[i] = String.valueOf(i + 1);
-            }
-            
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list_day);
-            day.setAdapter(adapter2);
+            month.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+				@Override
+				public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+					if (position==0) {
+						setDateSpinner(31);
+					} else if(position==1) {
+						setDateSpinner(28);
+					} else if(position==2) {
+						setDateSpinner(31);
+					} else if(position==3) {
+						setDateSpinner(30);
+					} else if(position==4) {
+						setDateSpinner(31);
+					} else if(position==5) {
+						setDateSpinner(30);
+					}
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});           
             
             return rootView;
         }
+
+		private void setDateSpinner(int limit) {
+            String[] list_date = new String[limit];
+            for (int i = 0; i < 31; i++) {
+            	list_date[i] = String.valueOf(i + 1);
+            }
+            
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, list_date);
+            date.setAdapter(adapter2);
+		}
     }
 
 }
